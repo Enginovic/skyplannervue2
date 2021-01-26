@@ -16,11 +16,25 @@
 
       <div class="btn" @click="getFlightInformation">Search</div>
     </div>
-    <template class="flight-information" v-if="isFetchingFlightInformation">
-      Fetching data
+    <template v-if="isFetchingFlightInformation">
+      <div class="loading">
+        Fetching data
+      </div>
     </template>
-    <template class="flight-information" v-if="!isFetchingFlightInformation && flightInformation">
-      {{ this.flightInformation.price }}
+    <template v-if="!isFetchingFlightInformation && flightInformation">
+      <div class="flight-information">
+        <div class="flight-destination">
+          {{ this.flightInformation.cityCodeFrom }}
+          {{ this.flightInformation.cityFrom }} ->
+          {{ this.flightInformation.cityCodeTo }}
+          {{ this.flightInformation.cityTo }}
+        </div>
+        <div class="flight-duration">Duration: {{ this.flightInformation.fly_duration }}</div>
+        <div class="flight-price">Price: {{ this.flightInformation.price }}</div>
+      </div>
+      <div class="weather-information">
+        Temp. {{ Math.round(weather.main.temp) }}º
+      </div>
     </template>
   </div>
 </template>
