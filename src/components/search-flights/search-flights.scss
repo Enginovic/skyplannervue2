@@ -1,0 +1,101 @@
+@import '../../assets/scss/_colors.scss';
+
+.search-flight-form {
+  background-color: $primary;
+  color: $white;
+  padding: 24px;
+  border-radius: 5px;
+}
+
+.label {
+  font-size: 11px;
+}
+
+.multiselect {
+  margin-bottom: 10px;
+}
+
+.flight-header {
+  display: flex;
+  font-size: 24px;
+  margin: 24px 0 10px;
+
+  .iconify {
+    margin-right: 10px;
+  }
+}
+
+.flight {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f6f6f6;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .top-block {
+    height: 24px;
+  }
+
+  .airlines {
+    font-size: 24px;
+  }
+
+  .city-code {
+    color: $gray;
+    font-size: 11px;
+    font-weight: lighter;
+    margin-top: 4px;
+  }
+
+  .duration {
+    text-align: center;
+    .iconify {
+      font-size: 24px;
+    }
+  }
+
+  .duration-time {
+    color: $gray;
+    font-size: 11px;
+    font-weight: lighter;
+  }
+
+  .price {
+    text-align: right;
+  }
+}
+
+.btn {
+  display: flex;
+  cursor: pointer;
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  color: $primary;
+  padding: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: lighten($secondair, 10);
+  }
+}
+
+.btn--secondair {
+  background-color: $secondair;
+  border-bottom: 3px solid darken($secondair, 10);
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: .8;
+  background-color: lighten($gray, 30) !important;
+  border: 1px solid lighten($gray, 30) !important;
+  color: $gray !important;
+}
