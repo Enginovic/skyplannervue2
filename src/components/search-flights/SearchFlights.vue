@@ -27,6 +27,12 @@
         <app-loader></app-loader>
       </template>
 
+      <template v-if="isErrorFetchingFlightInformation || isErrorFetchingWeatherInformation">
+        <div class="error">
+          Oops, something went wrong. Try again.
+        </div>
+      </template>
+
       <template v-if="!isFetchingFlightsInformation && flightsInformation">
         <div class="flight-header">
           <span class="iconify" data-icon="mdi:airplane-takeoff" data-inline="false"></span>
@@ -34,9 +40,7 @@
         </div>
 
         <div class="flight" v-for="flightInformation in flightsInformation" :key="`flight-${flightInformation.id}`">
-          <div class="airlines">
-            {{ flightInformation.airlines[0] }}
-          </div>
+          <div class="airlines">{{ flightInformation.airlines[0] }}</div>
           <div class="departure">
             <div class="top-block">{{ formatUnixTime(flightInformation.dTime) }}</div>
             <div class="city-code">{{ flightInformation.cityCodeFrom }}</div>
@@ -54,12 +58,28 @@
             <div class="btn btn--secondair">Choose flight<span class="iconify" data-icon="bi:arrow-right-short" data-inline="false"></span></div>
             </div>
         </div>
-
-        <div class="weather">
-          Temp. {{ Math.round(weather.main.temp) }}º
-        </div>
       </template>
     </div>
+
+    <template v-if="!isFetchingFlightsInformation && weather">
+      <div class="weather">
+        <div class="weather-icon">
+          <span
+            class="iconify"
+            :data-icon="`noto-v1:${weatherIcon}`"
+            data-inline="false">
+          </span>
+        </div>
+        <div class="tempature">
+          {{ Math.round(weather.main.temp) }}
+          <span class="degree">ºC</span>
+        </div>
+        <div class="other">
+          <div>Humidity: {{ weather.main.humidity }}%</div>
+          <div>Windspeed: {{ weather.wind.speed }} km/h</div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
