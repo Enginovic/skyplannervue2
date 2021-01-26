@@ -19,13 +19,15 @@ export default {
 </script>
 
 <style lang="scss">
+@import '/src/assets/scss/_fonts.scss';
+
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .container {
