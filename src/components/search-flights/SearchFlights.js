@@ -44,6 +44,7 @@ export default {
           this.getWeatherInformation()
         })
         .catch(() => {
+          this.isFetchingFlightsInformation = false
           this.isErrorFetchingFlightInformation = true
         })
     },
@@ -56,6 +57,7 @@ export default {
           this.isFetchingFlightsInformation = false
         })
         .catch(() => {
+          this.isFetchingFlightsInformation = false
           this.isErrorFetchingWeatherInformation = true
         })
     },
