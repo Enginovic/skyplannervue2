@@ -1,28 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <app-header></app-header>
+    <app-search-flights></app-search-flights>
+    <!-- <app-flight-information></app-flight-information> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/header/Header.vue'
+import SearchFlights from './components/search-flights/SearchFlights.vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    appHeader: Header,
+    appSearchFlights: SearchFlights
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.container {
+  padding: 50px 0;
+  max-width: 800px;
+  margin: 0 auto;
 }
 </style>
