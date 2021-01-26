@@ -1,14 +1,16 @@
 import Multiselect from 'vue-multiselect'
 import axios from 'axios'
+import Loader from '../loader/Loader.vue'
 
 export default {
   components: {
-    Multiselect
+    Multiselect,
+    appLoader: Loader
   },
 
   data () {
     return {
-      isFetchingFlightInformation: false,
+      isFetchingFlightsInformation: false,
       selectedFrom: null,
       selectedTo: null,
       optionsFrom: [
@@ -20,17 +22,17 @@ export default {
         { name: 'Amsterdam', code: 'AMS' },
         { name: 'London', code: 'LHR' }
       ],
-      flightInformation: null,
+      flightsInformation: null,
       weather: null
     }
   },
 
   methods: {
-    getFlightInformation () {
-      this.isFetchingFlightInformation = true
-      axios.get(`https://api.skypicker.com/flights?fly_from=${this.selectedFrom.code}&fly_to=${this.selectedTo.code}&date_from=29/01/2021&date_to=29/01/2021&partner=picky`)
+    getFlightsInformation () {
+      this.isFetchingFlightsInformation = true
+      axios.get(`https://api.skypicker.com/flights?fly_from=${this.selectedFrom.code}&fly_to=${this.selectedTo.code}&date_from=29/01/2021&date_to=29/01/2021&limit=5&partner=picky`)
         .then(response => {
-          this.flightInformation = response.data.data[0]
+          this.flightsInformation = response.data.data
           this.getWeatherInformation()
         })
     },
@@ -39,8 +41,15 @@ export default {
       axios.get(`https://api.openweathermap.org/data/2.5/weather/?q=${this.selectedTo.name}&units=metric&APPID=${process.env.VUE_APP_WEATHER_API_KEY}`)
         .then(response => {
           this.weather = response.data
-          this.isFetchingFlightInformation = false
+          this.isFetchingFlightsInformation = false
         })
+    },
+
+    formatUnixTime (time) {
+      const date = new Date(time * 1000)
+      const hours = date.getHours()
+      const minutes = '0' + date.getMinutes()
+      return hours + ':' + minutes.substr(-2)
     }
   }
 }
