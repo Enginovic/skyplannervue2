@@ -15,6 +15,22 @@
   margin-bottom: 10px;
 }
 
+.flights {
+  animation-name: smoothTop;
+  animation-duration: .5s;
+  position: relative;
+}
+@keyframes smoothTop {
+  from {
+    opacity: 0;
+    top: 40px;
+  }
+  to {
+    opacity: 1;
+    top: 0
+  }
+}
+
 .flight-header {
   display: flex;
   font-size: 24px;

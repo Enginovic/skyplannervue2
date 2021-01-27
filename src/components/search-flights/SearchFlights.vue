@@ -22,18 +22,18 @@
       <div class="btn btn--secondair" :class="{disabled: !selectedFrom || !selectedTo}" @click="getFlightsInformation">Search</div>
     </div>
 
-    <div class="flights">
-      <template v-if="isFetchingFlightsInformation">
-        <app-loader></app-loader>
-      </template>
+    <template v-if="isFetchingFlightsInformation">
+      <app-loader></app-loader>
+    </template>
 
-      <template v-if="isErrorFetchingFlightInformation || isErrorFetchingWeatherInformation">
-        <div class="error">
-          Oops, something went wrong. Try again.
-        </div>
-      </template>
+    <template v-if="isErrorFetchingFlightInformation || isErrorFetchingWeatherInformation">
+      <div class="error">
+        Oops, something went wrong. Try again.
+      </div>
+    </template>
 
-      <template v-if="!isFetchingFlightsInformation && flightsInformation">
+    <template v-if="!isFetchingFlightsInformation && flightsInformation">
+      <div class="flights">
         <div class="flight-header">
           <span class="iconify" data-icon="mdi:airplane-takeoff" data-inline="false"></span>
           {{ flightsInformation[0].cityFrom }} - {{ flightsInformation[0].cityTo }}
@@ -58,8 +58,8 @@
             <div class="btn btn--secondair">Choose flight<span class="iconify" data-icon="bi:arrow-right-short" data-inline="false"></span></div>
             </div>
         </div>
-      </template>
-    </div>
+      </div>
+    </template>
 
     <template v-if="!isFetchingFlightsInformation && weather">
       <div class="weather">
